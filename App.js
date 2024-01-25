@@ -1,4 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
+
+const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export default function App() {
   return (
@@ -7,12 +9,29 @@ export default function App() {
         <Text style={styles.cityName}>Seoul</Text>
       </View>
 
-      <View style={styles.weather}>
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.weather}
+      >
         <View style={styles.day}>
           <Text style={styles.temp}>30</Text>
           <Text style={styles.desc}>Sunny</Text>
         </View>
-      </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>30</Text>
+          <Text style={styles.desc}>Sunny</Text>
+        </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>30</Text>
+          <Text style={styles.desc}>Sunny</Text>
+        </View>
+        <View style={styles.day}>
+          <Text style={styles.temp}>30</Text>
+          <Text style={styles.desc}>Sunny</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -25,9 +44,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cityName: { fontSize: 40, fontWeight: "500" },
-  weather: { flex: 3 },
+  weather: {},
   day: {
-    flex: 1,
+    width: SCREEN_WIDTH,
     alignItems: "center",
   },
   temp: { fontSize: 160, marginTop: 50 },
