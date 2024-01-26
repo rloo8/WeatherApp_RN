@@ -8,9 +8,20 @@ import {
   Dimensions,
   ActivityIndicator,
 } from "react-native";
+import { Fontisto } from "@expo/vector-icons";
 
 const API_KEY = "9b36f45c8e28e1ecbbaab595f7180216";
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
+
+const icons = {
+  Clear: "day-sunny",
+  Clouds: "cloudy",
+  Rain: "rain",
+  Atmosphere: "cloudy-gusts",
+  Snow: "snow",
+  Drizzle: "day-rain",
+  Thunderstorm: "lightning",
+};
 
 export default function App() {
   const [ok, setOk] = useState(true);
@@ -69,10 +80,23 @@ export default function App() {
             />
           </View>
         ) : (
-          <View style={styles.day}>
-            <Text style={styles.temp}>{parseFloat(temp).toFixed(0)}°C</Text>
-            <Text style={styles.desc}>{weather.main}</Text>
-          </View>
+          <>
+            <View style={styles.day}>
+              <Text style={styles.temp}>{parseFloat(temp).toFixed(0)}°C</Text>
+              <Text style={styles.desc}>{weather.main}</Text>
+            </View>
+            <View style={styles.day}>
+              <Fontisto
+                style={{
+                  marginTop: 70,
+                }}
+                name={icons[weather.main]}
+                size={130}
+                color="black"
+              />
+              <Text style={{ fontSize: 30 }}>{weather.description}</Text>
+            </View>
+          </>
         )}
       </ScrollView>
     </View>
